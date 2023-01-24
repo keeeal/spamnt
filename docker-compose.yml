@@ -1,0 +1,22 @@
+version: '3'
+
+volumes:
+  config:
+
+services:
+  spamnt:
+    image: spamnt:latest
+    build:
+      context: .
+      target: app
+    volumes:
+      - ./config:/config
+    environment:
+      - DISCORD_BOT_TOKEN
+    command: python -m spamnt
+
+  # spamnt-dev:
+  #   image: spamnt:dev
+  #   build:
+  #     context: .
+  #     target: dev

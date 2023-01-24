@@ -1,0 +1,20 @@
+[project]
+name = "spamnt"
+version = "0.0.0"
+authors = [{name = "James Keal", email = "james@keal.au"}]
+
+dependencies = [
+  "discord",
+]
+
+[project.optional-dependencies]
+dev = [
+  "black",
+  "isort",
+  "pytest",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
