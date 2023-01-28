@@ -8,7 +8,7 @@ from .ext.timer import Timer
 from .utils.config import read_config
 
 DEFAULT_CONFIG = {
-    "secret": {"token": ""},
+    "token": "",
     "bot": {"command_prefix": "!!!"},
     "timer": {"seconds_to_live": 60, "pin_emoji": "🎺"},
 }
@@ -18,7 +18,7 @@ def main(config_file: Path):
     logging.basicConfig(level=logging.INFO)
     config = read_config(config_file, DEFAULT_CONFIG)
 
-    if not config["secret"]["token"]:
+    if not config["token"]:
         logging.error(f"No token in '{config_file}'")
         return
 
@@ -27,7 +27,7 @@ def main(config_file: Path):
     if "timer" in config:
         run(bot.add_cog(Timer(bot, **config["timer"])))
 
-    bot.run(config["secret"]["token"])
+    bot.run(config["token"])
 
 
 if __name__ == "__main__":
