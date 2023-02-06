@@ -10,7 +10,7 @@ from .utils.config import read_config
 DEFAULT_CONFIG = {
     "token": "",
     "bot": {"command_prefix": "!!!"},
-    "timer": {"seconds_to_live": 60, "pin_emoji": "🎺"},
+    "timer": {"delay": 60, "bot_ids": []},
 }
 
 
@@ -32,5 +32,5 @@ def main(config_file: Path):
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("-c", "--config-file", type=Path, default="/config/config.json")
+    parser.add_argument("-c", "--config-file", type=Path, default="/config/config.yaml")
     main(**vars(parser.parse_args()))

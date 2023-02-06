@@ -5,6 +5,7 @@ authors = [{name = "James Keal", email = "james@keal.au"}]
 
 dependencies = [
   "discord",
+  "pyyaml",
 ]
 
 [project.optional-dependencies]

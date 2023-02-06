@@ -1,21 +1,21 @@
 import logging
-from json import dump, load
+from yaml import safe_dump, safe_load
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Optional, Union
 
 
 def read_config(
-    file: Path,
-    default: Optional[dict[str, dict[str, Any]]] = None,
-) -> Optional[dict[str, dict[str, Any]]]:
-    if file.is_file():
+    file: Union[Path, str],
+    default: Optional[Any] = None,
+) -> Optional[Any]:
+    if Path(file).is_file():
         logging.info(f"Reading: {file}")
         with open(file) as f:
-            return load(f)
+            return safe_load(f)
     elif default:
         logging.info(f"Creating: {file}")
-        with open(file, "w") as f:
-            dump(default, f, indent=2)
+        with open(file, "w+") as f:
+            safe_dump(default, f, indent=2, sort_keys=False)
         return default
     else:
-        logging.info(f"Not found: {file}")
+        logging.warning(f"Not found: {file}")
